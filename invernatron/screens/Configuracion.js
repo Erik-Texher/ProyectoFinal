@@ -1,8 +1,11 @@
 import { ScrollView, StyleSheet, Text } from 'react-native'
-import React from 'react'
+import React, { Component } from 'react'
 import { Button } from '@rneui/base'
+import { useNavigation } from '@react-navigation/native'
 
 export default function Configuracion() {
+  const navigation=useNavigation()
+
   return (
     <ScrollView 
     centerContent
@@ -11,11 +14,13 @@ export default function Configuracion() {
       <Button
       buttonStyle={styles.button}
       title={"Parametros Humedad"}
+      onPress={()=>console.log("click!")}
       />
       
       <Button
       buttonStyle={styles.button}
       title={"Parametros Temperatura"}
+      onPress={()=>console.log("click!")}
       />
 
     </ScrollView>

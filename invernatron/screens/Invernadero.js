@@ -1,6 +1,13 @@
 import { StyleSheet, Text, ScrollView, Image } from 'react-native'
 import React from 'react'
+import { VStack, Center, NativeBaseProvider } from "native-base";
 
+function StackOk() {
+  return <VStack space={9} alignItems="center">
+      <Center w="64" h="40" bg="#73b767" rounded="md" shadow={3}    />
+      <Center w="64" h="40" bg="#73b767" rounded="md" shadow={3} />
+    </VStack>;
+}
 
 export default function Invernadero() {
   return (
@@ -16,10 +23,19 @@ export default function Invernadero() {
 
       <Text style={styles.title}>INVERNATRON CUIDA TU HUERTO!</Text>
 
+      <NativeBaseProvider>
+            <Center flex={1} px="3">
+                <StackOk />
+            </Center>
+          </NativeBaseProvider>
+          
 
     </ScrollView>
+    
   )
+  
 }
+
 
 const styles = StyleSheet.create({
   viewBody: {
@@ -28,8 +44,7 @@ const styles = StyleSheet.create({
   image: {
     height: 300,
     width: "100%",
-    marginBottom: 10,
-    textAlign: "center"
+    marginBottom: 10
   },
   title:{
     fontWeight:"bold",

@@ -3,24 +3,28 @@ import React, { Component } from 'react'
 import { Button } from '@rneui/base'
 import { useNavigation } from '@react-navigation/native'
 
+
+
+
 export default function Configuracion() {
-  const navigation=useNavigation()
+  const navigation = useNavigation()
 
   return (
-    <ScrollView 
-    centerContent
-    style={styles.viewBody}
+    
+    <ScrollView
+      centerContent
+      style={styles.viewBody}
     >
       <Button
-      buttonStyle={styles.button}
-      title={"Parametros Humedad"}
-      onPress={()=>console.log("click!")}
+        buttonStyle={styles.button}
+        title={"Parametros Humedad"}
+        onPress={()=> navigation.navigate("HumedadScreen")}
       />
-      
+
       <Button
-      buttonStyle={styles.button}
-      title={"Parametros Temperatura"}
-      onPress={()=>console.log("click!")}
+        buttonStyle={styles.button}
+        title={"Parametros Temperatura"}
+        onPress={()=> navigation.navigate("TemperaturaScreen")}
       />
 
     </ScrollView>
@@ -31,12 +35,12 @@ const styles = StyleSheet.create({
   viewBody: {
     marginHorizontal: 30
   },
-  button:{
-    backgroundColor:"#73b767",
+  button: {
+    backgroundColor: "#73b767",
     borderColor: "#3e6339",
     borderWidth: 2,
     borderRadius: 8,
     marginVertical: 10
-    
+
   }
 })

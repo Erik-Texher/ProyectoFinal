@@ -14,7 +14,7 @@ const HumeMi = () => {
         base: "70%",
         md: "100%"
       }} placeholder="0 - 100" />
-      <InputRightAddon children={"%"} />
+      <InputRightAddon children={"% HR"} />
     </InputGroup>
   </Stack>;
 };
@@ -30,7 +30,7 @@ const HumeMa = () => {
         base: "70%",
         md: "100%"
       }} placeholder="0 - 100" />
-      <InputRightAddon children={"%"} />
+      <InputRightAddon children={"% HR"} />
     </InputGroup>
   </Stack>;
 };
@@ -38,7 +38,7 @@ const HumeMa = () => {
 export default function Humedad() {
   return (
     <NativeBaseProvider>
-      <Text style={styles.title} >INGRESA UN RANGO DE HUMEDAD EN %</Text>
+      <Text style={styles.title} >INGRESA UN RANGO DE HUMEDAD EN %HR</Text>
       <Center flex={1} px="1">
         <HumeMi />
         <HumeMa />

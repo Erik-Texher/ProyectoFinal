@@ -16,27 +16,28 @@ const Tab = createBottomTabNavigator()
 const ConfStack = createNativeStackNavigator();
 
 function NavigationStackC() {
-    return(
+    return (
         <ConfStack.Navigator
-        initialRouteName='ConfiguracionScreen'
+            initialRouteName='ConfiguracionScreen'
         >
             <ConfStack.Screen
-            name='ConfiguracionScreen'
-            component={Configuracion}
+                name='ConfiguracionScreen'
+                component={Configuracion}
             />
             <ConfStack.Screen
-            name='HumedadScreen'
-            component={Humedad}
+                name='HumedadScreen'
+                component={Humedad}
             />
             <ConfStack.Screen
-            name='TemperaturaScreen'
-            component={Temperatura}
+                name='TemperaturaScreen'
+                component={Temperatura}
             />
         </ConfStack.Navigator>
     )
 }
 
 export default function NavigationTab() {
+    //----------------------------------------------proto 1------------------------------------------
     // const screenOptions = (route, color) => {
     //     let iconName
     //     switch (route.name) {
@@ -76,7 +77,7 @@ export default function NavigationTab() {
                         tabBarIcon: ({ color, size }) => (
                             <Icon type="material-comunity" name="nature" color={color} size={size} />
                         ),
-                        
+
                     }}
                 />
                 <Tab.Screen
@@ -87,12 +88,13 @@ export default function NavigationTab() {
                         tabBarIcon: ({ color, size }) => (
                             <Icon type="material-comunity" name="format-list-bulleted" color={color} size={size} />
                         ),
-                        headerShown:false
+                        headerShown: false
                     }}
                 />
 
             </Tab.Navigator>
         </NavigationContainer>
+        //----------------------------------------------proto 1------------------------------------------
         // <NavigationContainer>
         //     <Tab.Navigator
         //     initialRouteName='Invernadero'

@@ -1,12 +1,12 @@
 import { StyleSheet, Text, ScrollView, Image } from 'react-native'
 import React from 'react'
-import { VStack, Center, NativeBaseProvider } from "native-base";
+import { HStack, Center, NativeBaseProvider } from "native-base";
 
 function StackOk() {
-  return <VStack space={9} alignItems="center">
+  return <HStack space={9} alignItems="center">
       <Center w="64" h="40" bg="#73b767" rounded="md" shadow={3}    />
       <Center w="64" h="40" bg="#73b767" rounded="md" shadow={3} />
-    </VStack>;
+    </HStack>;
 }
 
 export default function Invernadero() {

@@ -2,9 +2,11 @@ import { StyleSheet, Text, ScrollView, Image } from 'react-native'
 import React from 'react'
 import { HStack, Center, NativeBaseProvider } from "native-base";
 
+
+
 function StackOk() {
   return <HStack space={9} alignItems="center">
-      <Center w="64" h="40" bg="#73b767" rounded="md" shadow={3}    />
+      <Center w="64" h="40" bg="#73b767" rounded="md" shadow={3} />
       <Center w="64" h="40" bg="#73b767" rounded="md" shadow={3} />
     </HStack>;
 }

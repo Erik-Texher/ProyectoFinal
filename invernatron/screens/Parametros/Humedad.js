@@ -1,7 +1,22 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { Input, InputGroup, InputLeftAddon, InputRightAddon, Stack, Center, NativeBaseProvider } from "native-base";
-import React from 'react'
+// import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '@rneui/base';
+import axios from 'axios'
+
+// const [hMin, setHMin] = useState("")
+// const [hMax, setHMax] = useState('')
+// const [id_Humedad, setId_Humedad] = useState('')
+
+// const updateHumedad = async() => {
+//   const obj = {id_Humedad, hMin, hMax} 
+//   const respuesta = await axios.put('http://192.168.1.69/Api_Invernatron/',obj)
+//   alert(respuesta.data.msg)
+//   setId_Humedad('') 
+//   setHMin('')
+//   setHMax('')
+// } 
 
 const HumeMi = () => {
   return <Stack alignItems="center">
@@ -13,7 +28,9 @@ const HumeMi = () => {
       <Input w={{
         base: "70%",
         md: "100%"
-      }} placeholder="0 - 100" />
+      }} placeholder="0 - 100" 
+      // campo={e=>setHMin(e)}
+      />
       <InputRightAddon children={"% HR"} />
     </InputGroup>
   </Stack>;
@@ -29,7 +46,9 @@ const HumeMa = () => {
       <Input w={{
         base: "70%",
         md: "100%"
-      }} placeholder="0 - 100" />
+      }} placeholder="0 - 100" 
+      // campo={e=>setHMax(e)}
+      />
       <InputRightAddon children={"% HR"} />
     </InputGroup>
   </Stack>;
@@ -46,7 +65,7 @@ export default function Humedad() {
       <Button
         buttonStyle={styles.button}
         title={"Guardar"}
-        onPress={() => console.log("Guardado en la BD")}
+        onPress={()=>console.log("holiwi")}
       />
 
     </NativeBaseProvider>

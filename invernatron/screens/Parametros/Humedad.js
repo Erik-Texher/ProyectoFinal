@@ -5,56 +5,58 @@ import React, { useState } from 'react'
 import { Button } from '@rneui/base';
 import axios from 'axios'
 
-// const [hMin, setHMin] = useState("")
-// const [hMax, setHMax] = useState('')
-// const [id_Humedad, setId_Humedad] = useState('')
-
-// const updateHumedad = async() => {
-//   const obj = {id_Humedad, hMin, hMax} 
-//   const respuesta = await axios.put('http://192.168.1.69/Api_Invernatron/',obj)
-//   alert(respuesta.data.msg)
-//   setId_Humedad('') 
-//   setHMin('')
-//   setHMax('')
-// } 
-
-const HumeMi = () => {
-  return <Stack alignItems="center">
-    <InputGroup w={{
-      base: "40%",
-      md: "285"
-    }}>
-      <InputLeftAddon children={"Mínimo:"} />
-      <Input w={{
-        base: "70%",
-        md: "100%"
-      }} placeholder="0 - 100" 
-      // campo={e=>setHMin(e)}
-      />
-      <InputRightAddon children={"% HR"} />
-    </InputGroup>
-  </Stack>;
-};
-
-const HumeMa = () => {
-  return <Stack alignItems="center">
-    <InputGroup w={{
-      base: "40%",
-      md: "285"
-    }}>
-      <InputLeftAddon children={"Máximo:"} />
-      <Input w={{
-        base: "70%",
-        md: "100%"
-      }} placeholder="0 - 100" 
-      // campo={e=>setHMax(e)}
-      />
-      <InputRightAddon children={"% HR"} />
-    </InputGroup>
-  </Stack>;
-};
 
 export default function Humedad() {
+
+  const [hMin, setHMin] = useState("")
+  const [hMax, setHMax] = useState('')
+  const [id_Humedad, setId_Humedad] = useState('')
+
+  const updateHumedad = async() => {
+    const obj = {id_Humedad, hMin, hMax} 
+    const respuesta = await axios.put('http://192.168.1.69/Api_Invernatron/',obj)
+    alert(respuesta.data.msg)
+    setId_Humedad('') 
+    setHMin('')
+    setHMax('')
+  } 
+
+  const HumeMi = () => {
+    return <Stack alignItems="center">
+      <InputGroup w={{
+        base: "40%",
+        md: "285"
+      }}>
+        <InputLeftAddon children={"Mínimo:"} />
+        <Input w={{
+          base: "70%",
+          md: "100%"
+        }} placeholder="0 - 100"
+        campo={e=>setHMin(e)}
+        />
+        <InputRightAddon children={"% HR"} />
+      </InputGroup>
+    </Stack>;
+  };
+
+  const HumeMa = () => {
+    return <Stack alignItems="center">
+      <InputGroup w={{
+        base: "40%",
+        md: "285"
+      }}>
+        <InputLeftAddon children={"Máximo:"} />
+        <Input w={{
+          base: "70%",
+          md: "100%"
+        }} placeholder="0 - 100"
+        campo={e=>setHMax(e)}
+        />
+        <InputRightAddon children={"% HR"} />
+      </InputGroup>
+    </Stack>;
+  };
+
   return (
     <NativeBaseProvider>
       <Text style={styles.title} >INGRESA UN RANGO DE HUMEDAD EN %HR</Text>
@@ -65,7 +67,8 @@ export default function Humedad() {
       <Button
         buttonStyle={styles.button}
         title={"Guardar"}
-        onPress={()=>console.log("holiwi")}
+        onPress={() => console.log("holiwi")}
+        // onPress={updateHumedad}
       />
 
     </NativeBaseProvider>

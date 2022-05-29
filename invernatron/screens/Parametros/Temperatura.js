@@ -8,7 +8,8 @@ const TempMi = () => {
     <InputGroup w={{
       base: "40%",
       md: "285"
-    }}>
+    }}
+      m="1.5">
       <InputLeftAddon children={"Mínimo:"} />
       <Input w={{
         base: "70%",
@@ -24,7 +25,8 @@ const TempMa = () => {
     <InputGroup w={{
       base: "40%",
       md: "285"
-    }}>
+    }}
+      m="1.5">
       <InputLeftAddon children={"Máximo:"} />
       <Input w={{
         base: "70%",

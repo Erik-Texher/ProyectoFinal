@@ -8,38 +8,41 @@ import { useFormik } from 'formik';
 
 export default function Humedad() {
 
-  // const [hMin, setHMin] = useState('')
-  // const [hMax, setHMax] = useState('')
-  // // const [id_Humedad, setId_Humedad] = useState('')
+  const [hMin, setHMin] = useState('')
+  const [hMax, setHMax] = useState('')
+  // const [id_Humedad, setId_Humedad] = useState('')
 
-  // const updateHumedad = async () => {
-  //   const obj = { hMin, hMax }
-  //   const respuesta = await axios.put('http://192.168.1.69/Api_Invernatron/', obj)
-  //   alert(respuesta.data.msg)
-  //   setHMin('')
-  //   setHMax('')
-  // }
-const {values, isSubmitting, setFieldValue, handleSubmit} = useFormik ({
-  initialValues: {
-    setHMin:"",
-    setHMax:""
-  },
-  onSubmit: values => {
-// Enviamos Valores a la BD
-console.log(values)
-  },
-})
+  const updateHumedad = async () => {
+    const obj = { hMin, hMax }
+    const respuesta = await axios.put('http://192.168.1.69/Api_Invernatron/', obj)
+    alert(respuesta.data.msg)
+    setHMin('')
+    setHMax('')
+  }
+
+  const { values, isSubmitting, setFieldValue, handleSubmit } = useFormik({
+    initialValues: {
+      setHMin: "",
+      setHMax: ""
+    },
+    onSubmit: values => {
+      // Enviamos Valores a la BD
+      console.log(values)
+      updateHumedad()
+    },
+  })
   const ParaHum = () => {
     return (
       <VStack space={3} alignItems="center">
         <InputGroup w="80%" h="50px" m="1.5">
           <InputLeftAddon children={"Mínimo:"} />
-          <Input w="50%" h="50px" placeholder="0 - 100" campo={e => setHMin(e)} value={values.setHMin} onChangeText={text => setFieldValue("setHMin", text )}/>
+          <Input w="50%" h="50px" placeholder="0 - 100" value={values.setHMin} onChangeText={text => setFieldValue("setHMin", text)} />
+          {/* campo={e => setHMin(e)} */}
           <InputRightAddon children={"% HR"} />
         </InputGroup>
         <InputGroup w="80%" h="50px" m="1.5">
           <InputLeftAddon children={"Máximo:"} />
-          <Input w="50%" h="50px" placeholder="0 - 100" campo={e => setHMax(e)} value={values.setHMax} onChangeText={text => setFieldValue("setHMax", text )}/>
+          <Input w="50%" h="50px" placeholder="0 - 100" value={values.setHMax} onChangeText={text => setFieldValue("setHMax", text)} />
           <InputRightAddon children={"% HR"} />
         </InputGroup>
         <Button buttonStyle={styles.button} title={"Guardar"} onPress={handleSubmit}

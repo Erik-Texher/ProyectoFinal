@@ -1,57 +1,54 @@
 import { StyleSheet, Text, View } from 'react-native'
-import { Input, InputGroup, InputLeftAddon, InputRightAddon, Stack, Center, NativeBaseProvider } from "native-base";
-import React from 'react'
+import { Input, InputGroup, InputLeftAddon, InputRightAddon, Center, NativeBaseProvider, VStack } from "native-base";
+import React, { useState } from 'react'
 import { Button } from '@rneui/base';
-
-const TempMi = () => {
-  return <Stack alignItems="center">
-    <InputGroup w={{
-      base: "40%",
-      md: "285"
-    }}
-      m="1.5">
-      <InputLeftAddon children={"Mínimo:"} />
-      <Input w={{
-        base: "70%",
-        md: "100%"
-      }} placeholder="10 - 25" />
-      <InputRightAddon children={"°C"} />
-    </InputGroup>
-  </Stack>;
-};
-
-const TempMa = () => {
-  return <Stack alignItems="center">
-    <InputGroup w={{
-      base: "40%",
-      md: "285"
-    }}
-      m="1.5">
-      <InputLeftAddon children={"Máximo:"} />
-      <Input w={{
-        base: "70%",
-        md: "100%"
-      }} placeholder="25 - 47" />
-      <InputRightAddon children={"°C"} />
-    </InputGroup>
-  </Stack>;
-};
+import axios from 'axios'
+import { useFormik } from 'formik';
 
 export default function Temperatura() {
+
+  const { values, isSubmitting, setFieldValue, handleSubmit } = useFormik({
+    initialValues: {
+      TMin: "",
+      TMax: ""
+    },
+    onSubmit: values => {
+      // Enviamos Valores a la BD
+      console.log(values)
+      // updateHumedad()
+    },
+  })
+
+  const ParaTemp = () => {
+    return (
+      <VStack space={3} alignItems="center">
+        <InputGroup w="80%" h="50px" m="1.5">
+          <InputLeftAddon children={"Mínimo:"} />
+          <Input w="50%" h="50px" placeholder="0 - 40" value={values.TMin} onChangeText={text => setFieldValue("TMin", text)} />
+          {/* campo={e => setHMin(e)} */}
+          <InputRightAddon children={"°C"} />
+        </InputGroup>
+        <InputGroup w="80%" h="50px" m="1.5">
+          <InputLeftAddon children={"Máximo:"} />
+          <Input w="50%" h="50px" placeholder="0 - 40" value={values.TMax} onChangeText={text => setFieldValue("TMax", text)} />
+          <InputRightAddon children={"°C"} />
+        </InputGroup>
+        <Button buttonStyle={styles.button} title={"Guardar"} onPress={handleSubmit}
+        // onPress={() => console.log("holiwi")}
+        // onPress={updateHumedad}
+        />
+      </VStack>
+    )
+  };
+
+
   return (
 
     <NativeBaseProvider>
       <Text style={styles.title} >INGRESA UN RANGO DE TEMPERATURA EN °C</Text>
       <Center flex={1} px="1">
-        <TempMi />
-        <TempMa />
+        <ParaTemp />
       </Center>
-      <Button
-        buttonStyle={styles.button}
-        title={"Guardar"}
-        onPress={() => console.log("Guardado en la BD")}
-      />
-
     </NativeBaseProvider>
   )
 }

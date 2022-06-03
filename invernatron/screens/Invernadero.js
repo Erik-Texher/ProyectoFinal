@@ -1,15 +1,45 @@
 import { StyleSheet, Text, ScrollView, Image } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { VStack, Center, NativeBaseProvider, Stack, HStack, Box, View, Heading, Container } from "native-base";
-import { setNestedObjectValues } from 'formik';
-
-
+// import { collection, onSnapshot, orderBy, query } from 'firebase/Firestore'
+// import Humedad from './Parametros/Humedad';
+// import { async } from '@firebase/util';
+import { Firestore } from 'firebase/firestore';
+import { database } from '../database/firebase';
 
 function StackOk() {
+  // const [parametros, setParametros] = useState([])
+  // useEffect (()=>{
+  //   const collectionRef = collection(database,'parametros')
+  //   const q = query(collectionRef, orderBy('createdAt', 'desc'))
+
+  //   const ud = onSnapshot(q, querySnapshot  => {
+
+  //   })
+  
+  // },[])
+  // async function loadHume(){
+  //   const sus = Firestore().collection('parametros').onSnapshot(querySnapshot => {
+  //     const param = []
+  //     querySnapshot.forEach(documentSnapshot =>{
+  //       param.push({
+  //         ...documentSnapshot,
+  //         key: documentSnapshot.id
+  //       })
+  //     })
+  //     setParametros(param)
+  //   })
+  //   return () => sus()
+  // }
+
+  // useEffect(()=>{
+  //   loadHume()
+  // },[])
+
   return (
     <Stack>
       <VStack space={9} alignItems="center">
-        <Text>Mantener parámetros entre HMin y HMax</Text>
+        <Text>Mantener parámetros entre </Text>
         <HStack>
           <Box w="40" h="40" bg="#73b767" rounded="md" shadow={6} borderRadius="full" >
             <Image
@@ -17,6 +47,7 @@ function StackOk() {
               resizeMode="contain"
               style={styles.imageInv}
             />
+            <Text style={styles.title}>54%</Text>
             {/* <Box w="40" h="40" bg="#73b767" rounded="md" shadow={6} borderRadius="full" /> */}
           </Box>
         </HStack>
@@ -28,6 +59,7 @@ function StackOk() {
               resizeMode="contain"
               style={styles.imageInv}
             />
+            <Text style={styles.title}>54°</Text>
             {/* <Box w="40" h="40" bg="#73b767" rounded="md" shadow={6} borderRadius="full" /> */}
           </Box>
         </HStack>
@@ -37,6 +69,7 @@ function StackOk() {
 }
 
 export default function Invernadero() {
+
   return (
     <NativeBaseProvider>
       <View pb={10}>
@@ -83,5 +116,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     textAlign: "center"
   },
+  textTemp: {
+    fontWeight: "bold",
+    fontSize: 20,
+    marginBottom: 10,
+    textAlign: "center"
+  },
+
 
 })

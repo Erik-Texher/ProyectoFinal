@@ -1,45 +1,62 @@
 import { StyleSheet, Text, ScrollView, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { VStack, Center, NativeBaseProvider, Stack, HStack, Box, View, Heading, Container } from "native-base";
-// import { collection, onSnapshot, orderBy, query } from 'firebase/Firestore'
+import { collection, onSnapshot, orderBy, query, firestore, getDoc, doc } from 'firebase/firestore'
 // import Humedad from './Parametros/Humedad';
 // import { async } from '@firebase/util';
-import { Firestore } from 'firebase/firestore';
+// import { Firestore, QuerySnapshot } from 'firebase/firestore';
 import { database } from '../database/firebase';
+import { getDatabase } from "firebase/database";
+
 
 function StackOk() {
   // const [parametros, setParametros] = useState([])
-  // useEffect (()=>{
-  //   const collectionRef = collection(database,'parametros')
-  //   const q = query(collectionRef, orderBy('createdAt', 'desc'))
+  // const [rtParam, setRTParam] = useState([])
 
-  //   const ud = onSnapshot(q, querySnapshot  => {
+  function loadHume() {
+   onSnapshot(doc(database, 'parametros', 'humedad'), (doc) => {
+      console.log(doc.data())
+      
+    })
+  }
+  function loadTemp() {
+    onSnapshot(doc(database, 'parametros', 'temperatura'), (doc) => {
+       console.log(doc.data())
+       
+     })
+   }
 
+  // async function loadParam() {
+  //   const collectionRef = collection(database, 'parametros')
+  //   const q = query(collectionRef)
+  //   const ud = onSnapshot(q, querySnapshot => {
+  //     setParametros(
+  //       querySnapshot.docs.map(doc => ({
+  //         id: doc.id,
+  //         HMin: doc.data().HMin,
+  //         HMax: doc.data().HMax
+
+  //       }))
+  //     )
+  //     console.log(parametros)
   //   })
-  
-  // },[])
-  // async function loadHume(){
-  //   const sus = Firestore().collection('parametros').onSnapshot(querySnapshot => {
-  //     const param = []
-  //     querySnapshot.forEach(documentSnapshot =>{
-  //       param.push({
-  //         ...documentSnapshot,
-  //         key: documentSnapshot.id
-  //       })
-  //     })
-  //     setParametros(param)
-  //   })
-  //   return () => sus()
+  //   return ud
   // }
+  useEffect(() => {
 
-  // useEffect(()=>{
-  //   loadHume()
-  // },[])
+    loadHume()
+    loadTemp()
+  }, [])
 
   return (
     <Stack>
       <VStack space={9} alignItems="center">
-        <Text>Mantener parámetros entre </Text>
+        {/* {
+          parametros != null &&
+          <Text>Mantener parámetros entre {loadParam()}</Text>
+        } */}
+        <Text>Mantener parámetros entre {}  </Text>
+        {/* {parametros.map(parametro =><Text key={parametro.id} {...parametro}>{}</Text>)} */}
         <HStack>
           <Box w="40" h="40" bg="#73b767" rounded="md" shadow={6} borderRadius="full" >
             <Image

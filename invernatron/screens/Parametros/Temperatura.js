@@ -4,6 +4,10 @@ import React, { useState } from 'react'
 import { Button } from '@rneui/base';
 import axios from 'axios'
 import { useFormik } from 'formik';
+import firebase from '../../database/firebase';
+import { async } from '@firebase/util';
+import { database } from '../../database/firebase';
+import { collection, addDoc, updateDoc, doc, arrayUnion, arrayRemove, setDoc } from 'firebase/firestore';
 
 export default function Temperatura() {
 
@@ -15,22 +19,25 @@ export default function Temperatura() {
     onSubmit: values => {
       // Enviamos Valores a la BD
       console.log(values)
-      // updateHumedad()
+      updateTemperatura()
     },
   })
-
+  const updateTemperatura = async (merge) => {
+    const paramRef = doc(database, "parametros", 'temperatura');
+    await setDoc(paramRef, values, { merge: merge })
+  }
   const ParaTemp = () => {
     return (
       <VStack space={3} alignItems="center">
         <InputGroup w="80%" h="50px" m="1.5">
           <InputLeftAddon children={"Mínimo:"} />
-          <Input w="50%" h="50px" placeholder="0 - 40" value={values.TMin} onChangeText={text => setFieldValue("TMin", text)} />
+          <Input w="50%" h="50px" placeholder="0 - 40" value={values.TMin} onChangeText={text => setFieldValue("TMin", text)} keyboardType="number-pad"/>
           {/* campo={e => setHMin(e)} */}
           <InputRightAddon children={"°C"} />
         </InputGroup>
         <InputGroup w="80%" h="50px" m="1.5">
           <InputLeftAddon children={"Máximo:"} />
-          <Input w="50%" h="50px" placeholder="0 - 40" value={values.TMax} onChangeText={text => setFieldValue("TMax", text)} />
+          <Input w="50%" h="50px" placeholder="0 - 40" value={values.TMax} onChangeText={text => setFieldValue("TMax", text)} keyboardType="number-pad"/>
           <InputRightAddon children={"°C"} />
         </InputGroup>
         <Button buttonStyle={styles.button} title={"Guardar"} onPress={handleSubmit}

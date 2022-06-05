@@ -7,7 +7,7 @@ import { useFormik } from 'formik';
 import firebase from '../../database/firebase';
 import { async } from '@firebase/util';
 import { database } from '../../database/firebase';
-import { collection,addDoc } from 'firebase/firestore';
+import { collection, addDoc, updateDoc, doc, arrayUnion, arrayRemove, setDoc } from 'firebase/firestore';
 
 
 export default function Humedad() {
@@ -23,8 +23,6 @@ export default function Humedad() {
   //   setHMax('')
   // }
 
-
-
   const { values, isSubmitting, setFieldValue, handleSubmit } = useFormik({
     initialValues: {
       HMin: "",
@@ -36,22 +34,23 @@ export default function Humedad() {
       updateHumedad()
     },
   })
-  
-  const updateHumedad = async () => {
-    // console.log(values)
-    await addDoc(collection(database, 'parametros'), values);
-    // await firebase.db.collection("parametros").add({
-    //   HumeMin: values.HMin,
-    //   HumeMax: values.HMax
-    // })
-    // alert('valores actualizados')
+
+
+  const updateHumedad = async (merge) => {
+    const paramRef = doc(database, "parametros", 'humedad');
+    await setDoc(paramRef, values, { merge: merge })
   }
+
+  // const addHumedad = async () => {
+  //   await addDoc(collection(database, 'parametros'), values);
+
+  // }
   const ParaHum = () => {
     return (
       <VStack space={3} alignItems="center">
         <InputGroup w="80%" h="50px" m="1.5">
           <InputLeftAddon children={"Mínimo:"} />
-          <Input w="50%" h="50px" placeholder="0 - 100" value={values.HMin} onChangeText={text => setFieldValue("HMin", text)} keyboardType="number-pad"/>
+          <Input w="50%" h="50px" placeholder="0 - 100" value={values.HMin} onChangeText={text => setFieldValue("HMin", text)} keyboardType="number-pad" />
           {/* campo={e => setHMin(e)} */}
           <InputRightAddon children={"% HR"} />
         </InputGroup>

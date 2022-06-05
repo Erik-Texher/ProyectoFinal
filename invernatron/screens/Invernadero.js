@@ -14,17 +14,17 @@ function StackOk() {
   // const [rtParam, setRTParam] = useState([])
 
   function loadHume() {
-   onSnapshot(doc(database, 'parametros', 'humedad'), (doc) => {
+    onSnapshot(doc(database, 'parametros', 'humedad'), (doc) => {
       console.log(doc.data())
-      
+
     })
   }
   function loadTemp() {
     onSnapshot(doc(database, 'parametros', 'temperatura'), (doc) => {
-       console.log(doc.data())
-       
-     })
-   }
+      console.log(doc.data())
+
+    })
+  }
 
   // async function loadParam() {
   //   const collectionRef = collection(database, 'parametros')
@@ -43,7 +43,6 @@ function StackOk() {
   //   return ud
   // }
   useEffect(() => {
-
     loadHume()
     loadTemp()
   }, [])
@@ -55,7 +54,7 @@ function StackOk() {
           parametros != null &&
           <Text>Mantener parámetros entre {loadParam()}</Text>
         } */}
-        <Text>Mantener parámetros entre {}  </Text>
+        <Text>Mantener parámetros entre { }  </Text>
         {/* {parametros.map(parametro =><Text key={parametro.id} {...parametro}>{}</Text>)} */}
         <HStack>
           <Box w="40" h="40" bg="#73b767" rounded="md" shadow={6} borderRadius="full" >

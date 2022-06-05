@@ -41,10 +41,11 @@ export default function Humedad() {
     await setDoc(paramRef, values, { merge: merge })
   }
 
+  //Método para agregar datos a a colección.
   // const addHumedad = async () => {
   //   await addDoc(collection(database, 'parametros'), values);
-
   // }
+  
   const ParaHum = () => {
     return (
       <VStack space={3} alignItems="center">
